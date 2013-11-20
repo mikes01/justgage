@@ -1,0 +1,11 @@
+{
+  "name": "justgage-bower",
+  "version": "1.0.0",
+  "main": "justgage.js",
+  "ignore": [ "R&D" ],
+  "keywords": [ "gauge", "gauges" ],
+  "dependencies": {
+    "raphael": "~2.1.2"
+  },
+  "devDependencies": {}
+}
