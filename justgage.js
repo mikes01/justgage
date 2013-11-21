@@ -9,87 +9,87 @@
  * -----------------------------
  * May 17, 2013.
  * -----------------------------
-     * make kvLookup() part of prototype per @toorshia
-     * https://github.com/toorshia/justgage/pull/59
+ * make kvLookup() part of prototype per @toorshia
+ * https://github.com/toorshia/justgage/pull/59
 
  * -----------------------------
  * April 25, 2013.
  * -----------------------------
-     * use HTML5 data-* attributes of the DOM Element to render the gauge (which overrides the constructor options).
+ * use HTML5 data-* attributes of the DOM Element to render the gauge (which overrides the constructor options).
 
  * -----------------------------
  * April 18, 2013.
  * -----------------------------
-     * parentNode - use this instead of id, to attach gauge to node which is outside of DOM tree - https://github.com/toorshia/justgage/issues/48
-     * width - force gauge width
-     * height - force gauge height
+ * parentNode - use this instead of id, to attach gauge to node which is outside of DOM tree - https://github.com/toorshia/justgage/issues/48
+ * width - force gauge width
+ * height - force gauge height
 
  * -----------------------------
  * April 17, 2013.
  * -----------------------------
-     * fix - https://github.com/toorshia/justgage/issues/49
+ * fix - https://github.com/toorshia/justgage/issues/49
 
  * -----------------------------
  * April 01, 2013.
  * -----------------------------
-     * fix - https://github.com/toorshia/justgage/issues/46
+ * fix - https://github.com/toorshia/justgage/issues/46
 
  * -----------------------------
  * March 26, 2013.
  * -----------------------------
-     * customSectors - define specific color for value range (0-10 : red, 10-30 : blue etc.)
+ * customSectors - define specific color for value range (0-10 : red, 10-30 : blue etc.)
 
  * -----------------------------
  * March 23, 2013.
  * -----------------------------
-     * counter - option to animate value  in counting fashion
-     * fix - https://github.com/toorshia/justgage/issues/45
+ * counter - option to animate value  in counting fashion
+ * fix - https://github.com/toorshia/justgage/issues/45
 
  * -----------------------------
  * March 13, 2013.
  * -----------------------------
-     * refresh method - added optional 'max' parameter to use when you need to update max value
+ * refresh method - added optional 'max' parameter to use when you need to update max value
 
  * -----------------------------
  * February 26, 2013.
  * -----------------------------
-     * decimals - option to define/limit number of decimals when not using humanFriendly or customRenderer to display value
-     * fixed a missing parameters bug when calling generateShadow()  for IE < 9
+ * decimals - option to define/limit number of decimals when not using humanFriendly or customRenderer to display value
+ * fixed a missing parameters bug when calling generateShadow()  for IE < 9
 
  * -----------------------------
  * December 31, 2012.
  * -----------------------------
-     * fixed text y-position for hidden divs - workaround for Raphael <tspan> 'dy' bug - https://github.com/DmitryBaranovskiy/raphael/issues/491
-     * 'show' parameters, like showMinMax are now 'hide' because I am lame developer - please update these in your setups
-     * Min and Max labels are now auto-off when in donut mode
-     * Start angle in donut mode is now 90
-     * donutStartAngle - option to define start angle for donut
+ * fixed text y-position for hidden divs - workaround for Raphael <tspan> 'dy' bug - https://github.com/DmitryBaranovskiy/raphael/issues/491
+ * 'show' parameters, like showMinMax are now 'hide' because I am lame developer - please update these in your setups
+ * Min and Max labels are now auto-off when in donut mode
+ * Start angle in donut mode is now 90
+ * donutStartAngle - option to define start angle for donut
 
  * -----------------------------
  * November 25, 2012.
  * -----------------------------
-     * Option to define custom rendering function for displayed value
+ * Option to define custom rendering function for displayed value
 
  * -----------------------------
  * November 19, 2012.
  * -----------------------------
-     * Config.value is now updated after gauge refresh
+ * Config.value is now updated after gauge refresh
 
  * -----------------------------
  * November 13, 2012.
  * -----------------------------
-     * Donut display mode added
-     * Option to hide value label
-     * Option to enable responsive gauge size
-     * Removed default title attribute
-     * Option to accept min and max defined as string values
-     * Option to configure value symbol
-     * Fixed bad aspect ratio calculations
-     * Option to configure minimum font size for all texts
-     * Option to show shorthand big numbers (human friendly)
-     */
+ * Donut display mode added
+ * Option to hide value label
+ * Option to enable responsive gauge size
+ * Removed default title attribute
+ * Option to accept min and max defined as string values
+ * Option to configure value symbol
+ * Fixed bad aspect ratio calculations
+ * Option to configure minimum font size for all texts
+ * Option to show shorthand big numbers (human friendly)
+ */
 
- JustGage = function(config) {
+JustGage = function(config) {
 
   // if (!config.id) {alert("Missing id parameter for gauge!"); return false;}
   // if (!document.getElementById(config.id)) {alert("No element with id: \""+config.id+"\" found!"); return false;}
@@ -98,14 +98,14 @@
 
   // Helps in case developer wants to debug it. unobtrusive
   if (config === null || config ===  undefined) {
-      console.log("Make sure to pass options to the constructor.");
-      return false;
+    console.log("Make sure to pass options to the constructor.");
+    return false;
   }
 
   // Helps in case developer wants to debug it. unobtrusive
   if (!config.id) {
-      console.log("Make sure to pass the id attribute to the constructor.");
-      return false;
+    console.log("Make sure to pass the id attribute to the constructor.");
+    return false;
   }
 
   var uel = document.getElementById(config.id);
@@ -113,8 +113,8 @@
 
   // Helps in case developer wants to debug it. unobtrusive
   if (!uel) {
-      console.log("No element with id : %s found", config.id);
-      return false;
+    console.log("No element with id : %s found", config.id);
+    return false;
   }
   // configurable parameters
   obj.config =
@@ -290,28 +290,28 @@
 
   // variables
   var
-  canvasW,
-  canvasH,
-  widgetW,
-  widgetH,
-  aspect,
-  dx,
-  dy,
-  titleFontSize,
-  titleX,
-  titleY,
-  valueFontSize,
-  valueX,
-  valueY,
-  labelFontSize,
-  labelX,
-  labelY,
-  minFontSize,
-  minX,
-  minY,
-  maxFontSize,
-  maxX,
-  maxY;
+      canvasW,
+      canvasH,
+      widgetW,
+      widgetH,
+      aspect,
+      dx,
+      dy,
+      titleFontSize,
+      titleX,
+      titleY,
+      valueFontSize,
+      valueX,
+      valueY,
+      labelFontSize,
+      labelX,
+      labelY,
+      minFontSize,
+      minX,
+      minY,
+      maxFontSize,
+      maxX,
+      maxY;
 
   // overflow values
   if (obj.config.value > obj.config.max) obj.config.value = obj.config.max;
@@ -354,21 +354,21 @@
     if(canvasW > canvasH) {
       widgetH = canvasH;
       widgetW = widgetH;
-    // width less than height
-  } else if (canvasW < canvasH) {
-    widgetW = canvasW;
-    widgetH = widgetW;
+      // width less than height
+    } else if (canvasW < canvasH) {
+      widgetW = canvasW;
+      widgetH = widgetW;
       // if height don't fit, rescale both
       if(widgetH > canvasH) {
         aspect = widgetH / canvasH;
         widgetH = widgetH / aspect;
         widgetW = widgetH / aspect;
       }
-    // equal
-  } else {
-    widgetW = canvasW;
-    widgetH = widgetW;
-  }
+      // equal
+    } else {
+      widgetW = canvasW;
+      widgetH = widgetW;
+    }
 
     // delta
     dx = (canvasW - widgetW)/2;
@@ -416,21 +416,21 @@
         widgetW = widgetW / aspect;
         widgetH = widgetH / aspect;
       }
-    // width less than height
-  } else if (canvasW < canvasH) {
-    widgetW = canvasW;
-    widgetH = widgetW / 1.25;
+      // width less than height
+    } else if (canvasW < canvasH) {
+      widgetW = canvasW;
+      widgetH = widgetW / 1.25;
       // if height don't fit, rescale both
       if(widgetH > canvasH) {
         aspect = widgetH / canvasH;
         widgetH = widgetH / aspect;
         widgetW = widgetH / aspect;
       }
-    // equal
-  } else {
-    widgetW = canvasW;
-    widgetH = widgetW * 0.75;
-  }
+      // equal
+    } else {
+      widgetW = canvasW;
+      widgetH = widgetW * 0.75;
+    }
 
     // delta
     dx = (canvasW - widgetW)/2;
@@ -552,19 +552,19 @@
 
   // gauge
   obj.gauge = obj.canvas.path().attr({
-      "stroke": "none",
-      "fill": obj.config.gaugeColor,
-      pki: [
-        obj.config.max,
-        obj.config.min,
-        obj.config.max,
-        obj.params.widgetW,
-        obj.params.widgetH,
-        obj.params.dx,
-        obj.params.dy,
-        obj.config.gaugeWidthScale,
-        obj.config.donut
-      ]
+    "stroke": "none",
+    "fill": obj.config.gaugeColor,
+    pki: [
+      obj.config.max,
+      obj.config.min,
+      obj.config.max,
+      obj.params.widgetW,
+      obj.params.widgetH,
+      obj.params.dx,
+      obj.params.dy,
+      obj.config.gaugeWidthScale,
+      obj.config.donut
+    ]
   });
 
   // level
@@ -589,10 +589,12 @@
 
   // title
   obj.txtTitle = obj.canvas.text(obj.params.titleX, obj.params.titleY, obj.config.title);
+  obj.txtTitle.className = "gauge-title";
+
   obj.txtTitle.attr({
     "font-size":obj.params.titleFontSize,
-    "font-weight":"bold",
-    "font-family":"Arial",
+    "font-weight":"300",
+    "font-family":"Open Sans",
     "fill":obj.config.titleFontColor,
     "fill-opacity":"1"
   });
@@ -602,8 +604,8 @@
   obj.txtValue = obj.canvas.text(obj.params.valueX, obj.params.valueY, 0);
   obj.txtValue.attr({
     "font-size":obj.params.valueFontSize,
-    "font-weight":"bold",
-    "font-family":"Arial",
+    "font-weight":"300",
+    "font-family":"Open Sans",
     "fill":obj.config.valueFontColor,
     "fill-opacity":"0"
   });
@@ -613,8 +615,8 @@
   obj.txtLabel = obj.canvas.text(obj.params.labelX, obj.params.labelY, obj.config.label);
   obj.txtLabel.attr({
     "font-size":obj.params.labelFontSize,
-    "font-weight":"normal",
-    "font-family":"Arial",
+    "font-weight":"300",
+    "font-family":"Open Sans",
     "fill":obj.config.labelFontColor,
     "fill-opacity":"0"
   });
@@ -630,8 +632,8 @@
   obj.txtMin = obj.canvas.text(obj.params.minX, obj.params.minY, obj.txtMinimum);
   obj.txtMin.attr({
     "font-size":obj.params.minFontSize,
-    "font-weight":"normal",
-    "font-family":"Arial",
+    "font-weight":"300",
+    "font-family":"Open Sans",
     "fill":obj.config.labelFontColor,
     "fill-opacity": (obj.config.hideMinMax || obj.config.donut)? "0" : "1"
   });
@@ -647,8 +649,8 @@
   obj.txtMax = obj.canvas.text(obj.params.maxX, obj.params.maxY, obj.txtMaximum);
   obj.txtMax.attr({
     "font-size":obj.params.maxFontSize,
-    "font-weight":"normal",
-    "font-family":"Arial",
+    "font-weight":"300",
+    "font-family":"Open Sans",
     "fill":obj.config.labelFontColor,
     "fill-opacity": (obj.config.hideMinMax || obj.config.donut)? "0" : "1"
   });
@@ -741,33 +743,33 @@ JustGage.prototype.kvLookup = function(key, tablea, tableb, defval, datatype, de
   var val = defval;
   var canConvert = false;
   if (!(key === null || key === undefined)) {
-      if (tableb !== null && tableb !== undefined && typeof tableb === "object" && key in tableb) {
-          val = tableb[key];
-          canConvert = true;
-      } else if (tablea !== null && tablea !== undefined && typeof tablea === "object" && key in tablea) {
-          val = tablea[key];
-          canConvert = true;
-      } else {
-          val = defval;
+    if (tableb !== null && tableb !== undefined && typeof tableb === "object" && key in tableb) {
+      val = tableb[key];
+      canConvert = true;
+    } else if (tablea !== null && tablea !== undefined && typeof tablea === "object" && key in tablea) {
+      val = tablea[key];
+      canConvert = true;
+    } else {
+      val = defval;
+    }
+    if (canConvert === true) {
+      if (datatype !== null && datatype !== undefined) {
+        switch(datatype) {
+          case 'int':
+            val = parseInt(val, 10);
+            break;
+          case 'float':
+            val = parseFloat(val);
+            break;
+          case 'array':
+            delimiter = delimiter ? delimiter : ',';
+            val = val.split(delimiter);
+            break;
+          default:
+            break;
+        }
       }
-      if (canConvert === true) {
-          if (datatype !== null && datatype !== undefined) {
-              switch(datatype) {
-                  case 'int':
-                    val = parseInt(val, 10);
-                    break;
-                  case 'float':
-                    val = parseFloat(val);
-                    break;
-                  case 'array':
-                    delimiter = delimiter ? delimiter : ',';
-                    val = val.split(delimiter);
-                    break;
-                  default:
-                    break;
-              }
-          }
-      }
+    }
   }
   return val;
 };
@@ -979,17 +981,17 @@ function humanFriendlyNumber( n, d ) {
   while( i ) {
     s = p(10,i--*3);
     if( s <= n ) {
-     n = Math.round(n*d2/s)/d2+"KMGTPE"[i];
-   }
- }
- return n;
+      n = Math.round(n*d2/s)/d2+"KMGTPE"[i];
+    }
+  }
+  return n;
 }
 
 /** Format numbers with commas - From: http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript */
 function formatNumber(x) {
-    var parts = x.toString().split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return parts.join(".");
+  var parts = x.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return parts.join(".");
 }
 
 /**  Get style  */
@@ -1036,13 +1038,13 @@ function onCreateElementNsReady(func) {
 var ie = (function(){
 
   var undef,
-  v = 3,
-  div = document.createElement('div'),
-  all = div.getElementsByTagName('i');
+      v = 3,
+      div = document.createElement('div'),
+      all = div.getElementsByTagName('i');
 
   while (
-    div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
-    all[0]
-    );
-    return v > 4 ? v : undef;
+      div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
+          all[0]
+      );
+  return v > 4 ? v : undef;
 }());
