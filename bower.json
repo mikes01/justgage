@@ -1,6 +1,6 @@
 {
   "name": "justgage-bower",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "justgage.js",
   "ignore": [ "R&D" ],
   "keywords": [ "gauge", "gauges" ],

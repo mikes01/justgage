@@ -7,11 +7,16 @@
  * LATEST UPDATES
  *
  * -----------------------------
- * May 17, 2013.
+ * March 16, 2014.
  * -----------------------------
  * make kvLookup() part of prototype per @toorshia
  * https://github.com/toorshia/justgage/pull/59
-
+ * fix - https://github.com/toorshia/justgage/issues/112
+ *
+ * -----------------------------
+ * February 16, 2014.
+ * -----------------------------
+ * fix - https://github.com/toorshia/justgage/issues/102
  * -----------------------------
  * April 25, 2013.
  * -----------------------------
@@ -91,9 +96,6 @@
 
 JustGage = function(config) {
 
-  // if (!config.id) {alert("Missing id parameter for gauge!"); return false;}
-  // if (!document.getElementById(config.id)) {alert("No element with id: \""+config.id+"\" found!"); return false;}
-
   var obj = this;
 
   // Helps in case developer wants to debug it. unobtrusive
@@ -108,14 +110,23 @@ JustGage = function(config) {
     return false;
   }
 
-  var uel = document.getElementById(config.id);
-  var dataset = uel.dataset ? uel.dataset : {};
+  var node;
 
-  // Helps in case developer wants to debug it. unobtrusive
-  if (!uel) {
-    console.log("No element with id : %s found", config.id);
+  if (config.id !== null && config.id !== undefined) {
+    node= document.getElementById(config.id);
+      if (!node) {
+        console.log('* justgage: No element with id : %s found', config.id);
     return false;
   }
+  } else if (config.parentNode !== null && config.parentNode !== undefined) {
+    node = config.parentNode;
+  } else {
+      console.log('* justgage: Make sure to pass the existing element id or parentNode to the constructor.');
+      return false;
+  }
+
+  var dataset = node.dataset ? node.dataset : {};
+
   // configurable parameters
   obj.config =
   {
@@ -143,7 +154,7 @@ JustGage = function(config) {
     // color of gauge title
     titleFontColor : obj.kvLookup('titleFontColor', config, dataset,  "#999999"),
 
-    // value : int
+    // value : float
     // value gauge is showing
     value : obj.kvLookup('value', config, dataset, 0, 'float'),
 
@@ -159,7 +170,7 @@ JustGage = function(config) {
     // min value
     min : obj.kvLookup('min', config, dataset, 0, 'float'),
 
-    // max : int
+    // max : float
     // max value
     max : obj.kvLookup('max', config, dataset, 100, 'float'),
 
@@ -316,7 +327,7 @@ JustGage = function(config) {
   // overflow values
   if (obj.config.value > obj.config.max) obj.config.value = obj.config.max;
   if (obj.config.value < obj.config.min) obj.config.value = obj.config.min;
-  obj.originalValue = obj.kvLookup('value', config, dataset, -1, 'int');
+  obj.originalValue = obj.kvLookup('value', config, dataset, -1, 'float');
 
   // create canvas
   if (obj.config.id !== null && (document.getElementById(obj.config.id)) !== null) {
@@ -488,7 +499,7 @@ JustGage = function(config) {
   };
 
   // var clear
-  canvasW, canvasH, widgetW, widgetH, aspect, dx, dy, titleFontSize, titleX, titleY, valueFontSize, valueX, valueY, labelFontSize, labelX, labelY, minFontSize, minX, minY, maxFontSize, maxX, maxY = null
+  canvasW, canvasH, widgetW, widgetH, aspect, dx, dy, titleFontSize, titleX, titleY, valueFontSize, valueX, valueY, labelFontSize, labelX, labelY, minFontSize, minX, minY, maxFontSize, maxX, maxY = null;
 
   // pki - custom attribute for generating gauge paths
   obj.canvas.customAttributes.pki = function (value, min, max, w, h, dx, dy, gws, donut) {
@@ -659,7 +670,10 @@ JustGage = function(config) {
   var defs = obj.canvas.canvas.childNodes[1];
   var svg = "http://www.w3.org/2000/svg";
 
-  if (ie < 9) {
+  if (ie !== 'undefined' && ie < 9 ) {
+    // VML mode - no SVG & SVG filter support
+  }
+  else if (ie !== 'undefined') {
     onCreateElementNsReady(function() {
       obj.generateShadow(svg, defs);
     });
