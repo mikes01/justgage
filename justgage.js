@@ -777,7 +777,7 @@ JustGage.prototype.kvLookup = function(key, tablea, tableb, defval, datatype, de
             break;
           case 'array':
             delimiter = delimiter ? delimiter : ',';
-            val = val.split(delimiter);
+            val = val.slice(delimiter);
             break;
           default:
             break;

@@ -1,5 +1,5 @@
 {
-  "name": "justgage-bower",
+  "name": "gage-bower",
   "version": "1.0.1",
   "main": "justgage.js",
   "ignore": [ "R&D" ],
